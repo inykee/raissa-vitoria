@@ -5,9 +5,9 @@ let indiceAtual = 0;
 let travado = false;
 let primeiraInteracao = false;
 
-const audio1 = new Audio("assets/songs/my-love-mine-all-mine.wav");
+const audio1 = new Audio("assets/songs/my-love-mine-all-mine.mp3");
 audio1.volume = 0.45; 
-const audio2 = new Audio("assets/songs/congratulations.wav");
+const audio2 = new Audio("assets/songs/congratulations.mp3");
 audio2.volume = 0.45;
 
 const track = document.querySelector("#carrossel-bg .carousel-track");
