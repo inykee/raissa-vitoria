@@ -1,0 +1,193 @@
+* { 
+    margin:0; 
+    padding:0; 
+    box-sizing:border-box; 
+}
+
+body {
+    font-family:"Segoe UI", -apple-system, sans-serif;
+    height:100vh; 
+    width:100vw;
+    display:flex; 
+    justify-content:center; 
+    align-items:center;
+    background: linear-gradient(160deg, #ffe6eb, #fff0f5);
+    overflow:hidden; 
+    position: relative;
+}
+
+#carrossel-bg {
+    position: fixed;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 2vw;
+    z-index: -1;
+    opacity:0.6;
+    transition: opacity 1s ease;
+}
+
+#carrossel-bg .carousel-track {
+    display:flex;
+    gap:2vw;
+    animation: scroll 80s linear infinite;
+}
+
+#carrossel-bg .carousel-track img {
+    width: 20vw; 
+    max-width: 350px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 20px;
+    flex-shrink:0;
+    box-shadow:0 15px 40px rgba(0,0,0,0.2);
+    transform-origin:center;
+    animation: float 8s ease-in-out infinite;
+}
+
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } 
+}
+
+@keyframes float {
+    0%,100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-1.5vh) scale(1.02); }
+}
+
+#container {
+    position: relative;
+    z-index:2;
+    max-width: 90%;
+    text-align: center;
+}
+
+.bloco { 
+    display:none; 
+    margin-bottom: 2vh; 
+    opacity:0;
+    transform: scale(0.95) translateY(2vh);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.bloco.ativo { 
+    display:block;
+    opacity:1;
+    transform: scale(1) translateY(0);
+}
+
+.bloco p {
+    font-size: 2.2rem;
+    font-weight: 600;
+    line-height: 1.6;
+    margin: 1vh 0;
+    opacity:0;
+    transform: scale(0.95) translateY(2vh);
+    animation: textAppear 0.8s forwards;
+
+    color: #000000;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+.bloco p:nth-child(1){ animation-delay:0.2s; }
+.bloco p:nth-child(2){ animation-delay:0.4s; }
+.bloco p:nth-child(3){ animation-delay:0.6s; }
+
+@keyframes textAppear {
+    to { opacity:1; transform: translateY(0) scale(1);}
+}
+
+button {
+    margin: 1vh 1vw;
+    padding: 1vh 3vw;
+    border:none; 
+    border-radius: 35px;
+    background: #000000;
+    color:white;
+    font-weight:bold;
+    font-size:1.2rem;
+    cursor:pointer;
+    box-shadow:0 6px 25px rgba(0,0,0,0.25);
+    transition: transform 0.35s ease, box-shadow 0.35s ease, filter 0.35s ease;
+    opacity:0;
+    transform: translateY(2vh) scale(0.95);
+    animation: textAppear 0.8s forwards;
+}
+
+button:nth-child(1){ animation-delay:0.2s; }
+button:nth-child(2){ animation-delay:0.4s; }
+button:nth-child(3){ animation-delay:0.6s; }
+
+button:hover {
+    transform: scale(1.12) translateY(-0.5vh);
+    filter: brightness(1.1);
+    box-shadow:0 12px 35px rgba(0,0,0,0.35);
+}
+
+#aviso {
+    position:absolute; 
+    bottom:3vh; 
+    left:50%;
+    transform:translateX(-50%);
+    font-size: 1.5rem;
+    font-weight: 600;
+
+    color: #000000;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+
+    animation: pulse 2.5s infinite;
+    z-index:3;
+}
+
+.confete {
+    width: 12px; 
+    height: 12px;
+    border-radius:50%;
+    position: fixed;
+    top:-10px;
+    z-index:5;
+    pointer-events:none;
+    opacity:0.9;
+    animation: confeteFall linear forwards;
+}
+
+@keyframes confeteFall {
+    to { transform: translateY(100vh) rotate(360deg);}
+}
+
+@keyframes pulse {  
+    0%,100%{opacity:0.3;} 
+    50%{opacity:0.9;} 
+}
+
+@media (max-width: 768px) {
+    .bloco p {
+        font-size: 1.8rem;
+    }
+    button {
+        font-size: 1rem;
+        padding: 0.8vh 2.5vw;
+    }
+    #carrossel-bg .carousel-track img {
+        width: 35vw;
+        max-width: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .bloco p {
+        font-size: 1.4rem;
+    }
+    button {
+        font-size: 0.9rem;
+        padding: 0.6vh 2vw;
+    }
+    #carrossel-bg .carousel-track img {
+        width: 50vw;
+        max-width: 180px;
+    }
+    #aviso {
+        font-size: 1.2rem;
+    }
+}
